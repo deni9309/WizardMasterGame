@@ -1,0 +1,47 @@
+body {
+    margin: 0;
+    font-family: 'Consolas';
+}
+
+.game {
+    background: linear-gradient(rgb(140, 140, 247), rgb(205, 226, 251), rgb(140, 140, 247));
+    width: 100vw;
+    height: 100vh;
+}
+
+.start-screen {
+    text-align: center;
+    font-size: 2.2em;
+    width: 20rem;
+    padding: 20px;
+    background-color: cornsilk;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.5s ease-in-out;
+    box-shadow: 0 0px 10px 1px gray;
+}
+
+.start-screen:hover {
+
+    color: white;
+    background-color: chocolate;
+    cursor: pointer;
+    -moz-transition: all 1s ease-in-out;
+    -webkit-transition: all 1s ease-in-out;
+    -o-transition: all 1s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+
+.game-screen {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgb(140, 140, 247), rgb(255, 255, 255), rgb(140, 140, 247));
+    transition: all 0.5s step-end;
+}
+
+.hidden {
+    display: none;
+    transition: 1s ease-in-out;
+}

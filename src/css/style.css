@@ -48,6 +48,12 @@ body {
     background-repeat: no-repeat;
 }
 
+.bug {
+    position: absolute;
+    background-image: url('/src/images/bug.png');
+    background-size: cover;
+}
+
 .hidden {
     display: none;
     transition: 1s ease-in-out;

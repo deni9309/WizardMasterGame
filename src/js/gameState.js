@@ -4,6 +4,10 @@ function initState() {
 
     const state = {
         player: 'Merlin',
+        gameOver: false,
+        score: 0,
+        scoreRate: 1,
+        killScore: 100,
         wizard: {
             width: 82,
             height: 100,

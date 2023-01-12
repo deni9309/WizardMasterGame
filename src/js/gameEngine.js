@@ -11,6 +11,8 @@ function gameLoop(state, game, timeStamp) {
     const { wizard } = state;
     const { wizardElement } = game;
 
+    game.scoreScreen.textContent = `${state.score} pts.`;
+
     modifyWizardPosition(state, game);
 
     if (state.keys.Space) {
@@ -39,6 +41,11 @@ function gameLoop(state, game, timeStamp) {
     bugElements.forEach(bugEl => {
         let posX = parseInt(bugEl.style.left);
 
+        // detect collision with wizard
+        if (detectCollision(wizardElement, bugEl)) {
+            state.gameOver = true;
+        }
+
         if (posX > 0) {
             bugEl.style.left = posX - state.bugStats.speed + 'px';
         } else {
@@ -53,6 +60,7 @@ function gameLoop(state, game, timeStamp) {
         // detect fireball collision
         bugElements.forEach(bug => {
             if (detectCollision(bug, fireball)) {
+                state.score += state.killScore;
                 bug.remove();
                 fireball.remove();
             }
@@ -69,7 +77,14 @@ function gameLoop(state, game, timeStamp) {
     wizardElement.style.left = wizard.posX + 'px';
     wizardElement.style.top = wizard.posY + 'px';
 
-    window.requestAnimationFrame(gameLoop.bind(null, state, game));
+    if (state.gameOver) {
+        alert(`You\'ve been bugged...\nGame over! Your score: ${state.score} pts.`)
+    } else {
+        if (timeStamp > state.bugStats.nextSpawnTimestamp) {
+            state.score += state.scoreRate;
+        }
+        window.requestAnimationFrame(gameLoop.bind(null, state, game));
+    }
 }
 
 function modifyWizardPosition(state, game) {

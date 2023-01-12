@@ -14,14 +14,16 @@ function initState() {
         fireball: {
             width: 20,
             height: 20,
-            speed:12
+            speed: 12,
+            nextSpawnTimestamp: 0,
+            fireRate: 300,
         },
         bugStats: {
             width: 50,
             height: 50,
             nextSpawnTimestamp: 0,
             maxSpawnInterval: 1500,
-            speed: 8,
+            speed: 7,
         },
         keys: {
             ArrowLeft: false,

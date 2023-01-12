@@ -22,11 +22,14 @@ function initGameObjects() {
             return wizardElement;
         },
         createFireball(wizard, fireball) {
+            let configPosX = wizard.width - 1;
+            let configPosY = wizard.height / 2.89;
+
             let fireballElement = document.createElement('div');
             fireballElement.classList.add('fireball');
 
-            fireballElement.style.left = wizard.posX + wizard.width - 1 + 'px';
-            fireballElement.style.top = wizard.posY + wizard.height / 2.89 + 'px';
+            fireballElement.style.left = wizard.posX + configPosX + 'px';
+            fireballElement.style.top = wizard.posY + configPosY + 'px';
             fireballElement.style.width = fireball.width + 'px';
             fireballElement.style.height = fireball.height + 'px';
 

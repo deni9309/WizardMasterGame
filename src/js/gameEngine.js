@@ -15,9 +15,9 @@ function gameLoop(state, game, timeStamp) {
 
     if (state.keys.Space) {
         game.wizardElement.style.backgroundImage = 'url("/src/images/wizard-fire.png")';
-        
+
         game.createFireball(wizard, state.fireball);
-    
+
     } else {
         game.wizardElement.style.backgroundImage = 'url("/src/images/wizard.png")';
     }
@@ -30,14 +30,34 @@ function gameLoop(state, game, timeStamp) {
         state.bugStats.nextSpawnTimestamp = timeStamp + Math.random() * state.bugStats.maxSpawnInterval;
     }
 
-    // render bugs
-    document.querySelectorAll('.bug').forEach(bugEl => {
+    // render(move) bugs
+    let bugElements = document.querySelectorAll('.bug');
+    bugElements.forEach(bugEl => {
         let posX = parseInt(bugEl.style.left);
 
         if (posX > 0) {
             bugEl.style.left = posX - state.bugStats.speed + 'px';
         } else {
             bugEl.remove();
+        }
+    });
+
+    // render(move) fireballs
+    document.querySelectorAll('.fireball').forEach(fireball => {
+        let posX = parseInt(fireball.style.left);
+
+    // detect fireball collision
+        bugElements.forEach(bug => {
+            if (detectCollision(bug, fireball)) {
+                bug.remove();
+                fireball.remove();
+           }
+        });
+        
+        if (posX > game.gameScreen.offsetWidth) {
+            fireball.remove();
+        } else {
+            fireball.style.left = posX + state.fireball.speed + 'px';
         }
     });
 
@@ -51,7 +71,7 @@ function gameLoop(state, game, timeStamp) {
 function modifyWizardPosition(state, game) {
     const { wizard } = state;
 
-    // move wizard D:right W:up A:left S:down
+    // move wizard with keyboard arrows
     if (state.keys.ArrowRight) {
         // to be fully visible when moving right (stays within the screen dimensions )
         wizard.posX = Math.min(wizard.posX + wizard.speed, game.gameScreen.offsetWidth - wizard.width);
@@ -66,4 +86,17 @@ function modifyWizardPosition(state, game) {
         // to be fully visible when moving down (stays within the screen dimensions )
         wizard.posY = Math.min(wizard.posY + wizard.speed, game.gameScreen.offsetHeight - wizard.height);
     }
+}
+
+function detectCollision(objectA, objectB) {
+    // check whether two objects overlap eachother (see MDN-> getBoundingClientRect();)
+    let first = objectA.getBoundingClientRect();
+    let second = objectB.getBoundingClientRect();
+
+    let hasCollision = !(first.top > second.bottom ||
+        first.bottom < second.top ||
+        first.right < second.left ||
+        first.left > second.right);
+
+    return hasCollision;
 }

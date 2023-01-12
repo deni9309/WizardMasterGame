@@ -48,6 +48,12 @@ body {
     background-repeat: no-repeat;
 }
 
+.fireball {
+    position: absolute;
+    background-image: url('/src/images/fire-ball.png');
+    background-size: cover;
+}
+
 .bug {
     position: absolute;
     background-image: url('/src/images/bug.png');

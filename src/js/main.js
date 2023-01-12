@@ -2,10 +2,11 @@ let state = initState();
 let game = initGameObjects();
 
 const availableKeys = [
-    'KeyA',
-    'KeyS',
-    'KeyD',
-    'KeyW',
+    'ArrowLeft',
+    'ArrowDown',
+    'ArrowRight',
+    'ArrowUp',
+    'Space',
 ];
 
 document.addEventListener('keydown', (e) => {

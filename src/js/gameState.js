@@ -13,7 +13,8 @@ function initState() {
             height: 100,
             posX: startX,
             posY: startY,
-            speed: 10
+            speed: 10,
+            gravity: 1.5,
         },
         fireball: {
             width: 20,
@@ -23,11 +24,11 @@ function initState() {
             fireRate: 300,
         },
         bugStats: {
-            width: 50,
-            height: 50,
+            width: 45,
+            height: 45,
             nextSpawnTimestamp: 0,
             maxSpawnInterval: 1500,
-            speed: 7,
+            speed: 5,
         },
         keys: {
             ArrowLeft: false,

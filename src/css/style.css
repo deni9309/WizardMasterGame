@@ -51,7 +51,7 @@ body {
 
 .wizard {
     position: absolute;
-    background-image: url('/src/images/wizard.png');
+    background-image: url('./src/images/wizard.png');
     background-size: cover;
     background-repeat: no-repeat;
 }

@@ -8,7 +8,7 @@
             "type": "chrome",
             "request": "launch",
             "name": "index.html",
-            "file": "c:\\Users\\deni9309\\Desktop\\JS Advanced - Jan 2022\\Side-Scrolling-Game-Workshop\\WizardMasterGame\\src\\index.html"
+            "file": ".\\index.html"
         }
     ]
 }

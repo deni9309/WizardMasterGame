@@ -90,6 +90,11 @@ function gameLoop(state, game, timeStamp) {
 function modifyWizardPosition(state, game) {
     const { wizard } = state;
 
+    // add gravity
+    if (wizard.posY + wizard.speed <= game.gameScreen.offsetHeight - wizard.height) {
+        wizard.posY += wizard.gravity;
+    }
+
     // move wizard with keyboard arrows
     if (state.keys.ArrowRight) {
         // to be fully visible when moving right (stays within the screen dimensions )
